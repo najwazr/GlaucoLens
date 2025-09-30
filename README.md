@@ -17,6 +17,6 @@ this project uses a pre-trained model from:
 - it only works with fundus retina images. if you upload random images (e.g., landscapes, faces, objects), the app will still classify them as “Normal” instead of rejecting them.
 - ⚠️ **this project is a student prototype and not a medical diagnostic tool. predictions are for educational purposes only. for real diagnosis, please consult an ophthalmologist.**
 
-collaborators 👥
+collaborators 👥:
 - [github.com/najwazr](https://github.com/najwazr)  
 - [github.com/Nilawahyusaputri](https://github.com/Nilawahyusaputri)
