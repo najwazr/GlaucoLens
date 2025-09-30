@@ -61,12 +61,12 @@ train_datagen = ImageDataGenerator(rescale = 1./255,
 
 test_datagen = ImageDataGenerator(rescale = 1./255)
 
-training_set = train_datagen.flow_from_directory('c:/Users/Axioo/Downloads/TPCB Mini Project/dataset/training',
+training_set = train_datagen.flow_from_directory('uploads/dataset/training',
                                                  target_size = (100, 100),
                                                  batch_size = 64,
                                                  class_mode = 'binary')
 
-test_set = test_datagen.flow_from_directory('c:/Users/Axioo/Downloads/TPCB Mini Project/dataset/testing',
+test_set = test_datagen.flow_from_directory('uploads/dataset/testing',
                                             target_size = (100, 100),
                                             batch_size = 64,
                                             class_mode = 'binary')
@@ -79,4 +79,4 @@ my_callbacks = [
 
 model.fit(training_set, epochs=20, validation_data = test_set, callbacks=my_callbacks)
 
-model.save('my_model2.keras')
+model.save('my_model2.h5')
