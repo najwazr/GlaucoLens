@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glaucoma Early Detection Hub</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background: #f0f4f8;
+      font-family: 'Arial', sans-serif;
+    }
+    .header {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #1f4e79;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .subheader {
+      font-size: 1.2rem;
+      color: #495057;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .jumbo-tron {
+      background-color: #1f4e79;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+    }
+    .btn-custom {
+      background-color: #1f4e79;
+      color: white;
+    }
+    .btn-custom:hover {
+      background-color: #145374;
+    }
+    .upload-section {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .simulation-image {
+      width: 400px;
+      height: 200px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">Glaucoma Early Detection Hub</div>
+  <div class="subheader">Detect Glaucoma Early to Save Your Vision</div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#vision-simulator">Vision Simulator</a></li>
+      <li><a href="#detection">Detection</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <div id="home" class="container">
+    <h2>👁️ About Glaucoma Early Detection Hub</h2>
+    <p>Welcome to the <strong>Glaucoma Early Detection Hub</strong>, a platform dedicated to raising awareness about glaucoma
+      and helping users detect the disease early through image-based analysis.</p>
+    <p>Why it matters:</p>
+    <ul>
+      <li>Glaucoma is a leading cause of irreversible blindness.</li>
+      <li>Early detection can slow down or prevent vision loss.</li>
+    </ul>
+    <p>Explore our features:</p>
+    <ul>
+      <li>Vision Simulator: Visualize the impact of glaucoma on vision.</li>
+      <li>Detection: Upload retina images to analyze glaucoma risks.</li>
+    </ul>
+    <div class="image-container">
+      <img src="https://via.placeholder.com/800x400.png?text=Glaucoma+Detection" alt="Glaucoma Detection" width="100%">
+    </div>
+  </div>
+
+  <!-- Vision Simulator Section -->
+  <div id="vision-simulator" class="container">
+    <h2>🔍 Vision Simulator</h2>
+    <p>Adjust the slider to simulate how glaucoma affects vision.</p>
+    <div class="form-group">
+      <label for="severitySlider">Select Glaucoma Severity Level:</label>
+      <input type="range" class="form-control" id="severitySlider" min="0" max="100" value="25" oninput="updateSimulation()">
+      <p>Severity: <span id="severityValue">25</span></p>
+    </div>
+    <h3>Simulation Result</h3>
+    <div id="simulationResult">
+      <img id="simImage" class="simulation-image" src="https://via.placeholder.com/400x200.png?text=Normal+Vision" alt="Normal Vision">
+    </div>
+  </div>
+
+  <!-- Detection Section -->
+  <div id="detection" class="container">
+    <h2>Glaucoma Detection</h2>
+    <p>Upload a picture of the inside of your eye (fundus). It's the photo that shows the retina and blood vessels.</p>
+
+    <div class="upload-section">
+      <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="imageUpload">Upload Your Image:</label>
+          <div class="col-sm-10">
+            <input type="file" class="form-control" name="my_image" id="imageUpload" accept="image/*">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-custom">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="upload-container">
+      <div id="uploadedImage"></div>
+      <h2>Your Prediction: <i>{{prediction}}</i></h2>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2024 Glaucoma Early Detection Hub. All rights reserved.</p>
+  </div>
+</div>
+
+<script>
+  // Update the simulation image based on severity
+  function updateSimulation() {
+    var severity = document.getElementById("severitySlider").value;
+    document.getElementById("severityValue").innerText = severity;
+    var imageUrl = "https://via.placeholder.com/400x200.png?text=Normal+Vision";
+    if (severity < 30) {
+      imageUrl = "https://via.placeholder.com/400x200.png?text=Normal+Vision";
+    } else if (severity < 70) {
+      imageUrl = "https://via.placeholder.com/400x200.png?text=Mild+Glaucoma";
+    } else {
+      imageUrl = "https://via.placeholder.com/400x200.png?text=Severe+Glaucoma";
+    }
+    document.getElementById("simImage").src = imageUrl;
+  }
+
+  // Show uploaded image
+  document.getElementById('imageUpload').addEventListener('change', function(e) {
+    var fileInput = e.target;
+    var uploadedImage = document.getElementById("uploadedImage");
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+      uploadedImage.innerHTML = `<img src="${reader.result}" width="100%" alt="Uploaded Image" />`;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      uploadedImage.innerHTML = "No image uploaded";
+    }
+  });
+</script>
+
+</body>
+</html>
