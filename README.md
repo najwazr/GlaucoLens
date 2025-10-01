@@ -18,5 +18,5 @@ this project uses a pre-trained model from:
 - ⚠️ **this project is a student prototype and not a medical diagnostic tool. predictions are for educational purposes only. for real diagnosis, please consult an ophthalmologist.**
 
 collaborators 👥:
-- [github.com/najwazr](https://github.com/najwazr)  
-- [github.com/Nilawahyusaputri](https://github.com/Nilawahyusaputri)
+-   [github.com/Nilawahyusaputri](https://github.com/Nilawahyusaputri)
+-   [github.com/najwazr](https://github.com/najwazr)
