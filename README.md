@@ -6,7 +6,7 @@ GlaucoLens is an interactive web-based application designed to detect glaucoma f
 - Glaucoma (possible signs of glaucoma, consult an ophthalmologist)  
 
 in addition to prediction, the app provides:
-- Vision Simulator: slider-based tool to simulate mild, moderate, and severe glaucoma vision. lets users visualize how glaucoma affects vision over time.  
+- Vision Simulator: slider-based tool to simulate mild, moderate, and severe glaucoma vision. this lets users visualize how glaucoma affects vision over time.  
 - Learn About Glaucoma: quick and basic information about glaucoma, explains common risk factors. this includes an interactive self-check tool where users can enter details like age, family history, diabetes, and blood pressure to estimate their risk level, along with prevention tips and awareness content.
 
 this project uses a pre-trained model from:  
